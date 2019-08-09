@@ -1,4 +1,4 @@
-FROM php:${PHP_VERSION:-7.3}-fpm
+FROM php:7.3-fpm
 
 RUN apt-get update \
     && apt-get upgrade -y \

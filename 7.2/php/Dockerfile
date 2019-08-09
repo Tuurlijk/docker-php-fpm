@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.2-fpm
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -74,9 +74,6 @@ RUN chown -R 1000:1000 /home/dev \
     && chown -R 501:501 /home/docker
 
 COPY /dev.sh /etc/profile.d/
-
-RUN yes | pecl install xdebug \
-    && docker-php-ext-enable xdebug
 
 RUN apt-get clean \
     && apt-get -y purge \
