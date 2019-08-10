@@ -7,3 +7,14 @@ RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
     && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
+
+RUN apt-get clean \
+    && apt-get -y purge \
+        git \
+        mariadb-client \
+        rsync \
+        parallel \
+        unzip \
+        vim \
+    && apt-get autoremove --purge -y \
+    && rm -rf /var/lib/apt/lists/* /usr/src/*
