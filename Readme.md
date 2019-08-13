@@ -33,8 +33,9 @@ Currently images are being built for:
 * imagemagick
 * locales
 * mariadb-client
-* rsync
 * parallel
+* rsync
+* sqlite
 * unzip
 * vim
 * zsh
