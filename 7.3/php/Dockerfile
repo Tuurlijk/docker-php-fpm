@@ -3,9 +3,6 @@ FROM php:7.3-fpm
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
-        git \
-        graphicsmagick \
-        imagemagick \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmagickwand-dev \
@@ -13,11 +10,15 @@ RUN apt-get update \
         libwebp-dev \
         libxml2-dev \
         libzip-dev \
-        locales \
         zlib1g-dev \
+        git \
+        graphicsmagick \
+        imagemagick \
+        locales \
         mariadb-client \
-        rsync \
         parallel \
+        rsync \
+        sqlite \
         unzip \
         vim \
         zsh \
