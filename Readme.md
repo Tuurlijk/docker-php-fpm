@@ -11,6 +11,9 @@ Currently images are being built for:
 * 7.2
 * 7.2-blackfire
 * 7.2-xdebug
+* 5.6
+* 5.6-blackfire
+* 5.6-xdebug
 
 # Added PHP modules
 * blackfire

@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:5.6-fpm
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -117,6 +117,7 @@ RUN chown -R 1000:1000 /home/dev \
     && chown -R 504:504 /home/docker4 \
     && chown -R 505:505 /home/docker5 \
     && chown -R 506:506 /home/docker6
+
 
 COPY /dev.sh /etc/profile.d/
 

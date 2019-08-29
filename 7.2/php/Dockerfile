@@ -74,8 +74,10 @@ RUN set -x \
     useradd -u 1004 -m -s /bin/zsh -g dev4 dev4; fi \
     && if ! getent group dev5; then groupadd -g 1005 -r dev5; \
     useradd -u 1005 -m -s /bin/zsh -g dev5 dev5; fi \
-    && if ! getent group docker; then groupadd -g 501 -r docker; \
-    useradd -u 501 -m -s /bin/zsh -g docker docker; fi \
+    && if ! getent group docker; then groupadd -g 500 -r docker; \
+    useradd -u 500 -m -s /bin/zsh -g docker docker; fi \
+    && if ! getent group docker1; then groupadd -g 501 -r docker1; \
+    useradd -u 501 -m -s /bin/zsh -g docker1 docker1; fi \
     && if ! getent group docker2; then groupadd -g 502 -r docker2; \
     useradd -u 502 -m -s /bin/zsh -g docker2 docker2; fi \
     && if ! getent group docker3; then groupadd -g 503 -r docker3; \
@@ -84,8 +86,8 @@ RUN set -x \
     useradd -u 504 -m -s /bin/zsh -g docker4 docker4; fi \
     && if ! getent group docker5; then groupadd -g 505 -r docker5; \
     useradd -u 505 -m -s /bin/zsh -g docker5 docker5; fi \
-    && if ! getent group docker5; then groupadd -g 506 -r docker5; \
-    useradd -u 506 -m -s /bin/zsh -g docker5 docker5; fi
+    && if ! getent group docker6; then groupadd -g 506 -r docker6; \
+    useradd -u 506 -m -s /bin/zsh -g docker6 docker6; fi
 
 COPY /home/* /home/dev/
 COPY /home/* /home/dev1/
@@ -100,6 +102,7 @@ COPY /home/* /home/docker2/
 COPY /home/* /home/docker3/
 COPY /home/* /home/docker4/
 COPY /home/* /home/docker5/
+COPY /home/* /home/docker6/
 
 RUN chown -R 1000:1000 /home/dev \
     && chown -R 1001:1001 /home/dev1 \
@@ -107,12 +110,13 @@ RUN chown -R 1000:1000 /home/dev \
     && chown -R 1003:1003 /home/dev3 \
     && chown -R 1004:1004 /home/dev4 \
     && chown -R 1005:1005 /home/dev5 \
-    && chown -R 501:501 /home/docker \
-    && chown -R 502:502 /home/docker1 \
-    && chown -R 503:503 /home/docker2 \
-    && chown -R 504:504 /home/docker3 \
-    && chown -R 505:505 /home/docker4 \
-    && chown -R 506:506 /home/docker5
+    && chown -R 500:500 /home/docker \
+    && chown -R 501:501 /home/docker1 \
+    && chown -R 502:502 /home/docker2 \
+    && chown -R 503:503 /home/docker3 \
+    && chown -R 504:504 /home/docker4 \
+    && chown -R 505:505 /home/docker5 \
+    && chown -R 506:506 /home/docker6
 
 COPY /dev.sh /etc/profile.d/
 
