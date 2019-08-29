@@ -54,12 +54,6 @@ RUN docker-php-ext-configure gd \
     && yes | pecl install imagick \
     && docker-php-ext-enable imagick
 
-RUN yes | pecl install igbinary \
-    && docker-php-ext-enable igbinary
-
-RUN yes | pecl install redis \
-    && docker-php-ext-enable redis
-
 # create users and groups for most common default uids
 RUN set -x \
     && if ! getent group dev; then groupadd -g 1000 -r dev; \
