@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -10,8 +10,8 @@ RUN apt-get update \
         libwebp-dev \
         libxml2-dev \
         libzip-dev \
-        zlib1g-dev \
         libzstd-dev \
+        zlib1g-dev \
         git \
         graphicsmagick \
         imagemagick \
@@ -39,11 +39,11 @@ RUN curl -L https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsen
     && mv mhsendmail_linux_amd64 /usr/local/bin/mhsendmail \
     && chsh root -s /bin/zsh
 
-RUN docker-php-ext-configure gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-webp-dir=/usr/include/ \
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
+    && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-configure zip \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) bz2 \
     && docker-php-ext-install -j$(nproc) intl \
