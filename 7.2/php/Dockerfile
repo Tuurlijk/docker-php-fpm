@@ -11,6 +11,7 @@ RUN apt-get update \
         libxml2-dev \
         libzip-dev \
         zlib1g-dev \
+        libzstd-dev \
         git \
         graphicsmagick \
         imagemagick \
@@ -128,5 +129,6 @@ RUN apt-get clean \
         libpng-dev \
         libwebp-dev \
         libxml2-dev \
+        libzstd-dev \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
