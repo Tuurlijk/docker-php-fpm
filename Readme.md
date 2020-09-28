@@ -41,6 +41,7 @@ Currently images are being built for:
 * mariadb-client
 * parallel
 * rsync
+* ssh
 * sqlite
 * unzip
 * vim

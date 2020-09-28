@@ -19,6 +19,7 @@ RUN apt-get update \
         mariadb-client \
         parallel \
         rsync \
+        ssh \
         sqlite \
         unzip \
         vim \
