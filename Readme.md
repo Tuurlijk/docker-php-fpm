@@ -5,6 +5,12 @@ The stock PHP fpm image with some added tools for use in local development.
 # Versions
 
 Currently images are being built for:
+* 8.1
+* 8.1-blackfire
+* 8.1-xdebug
+* 8.0
+* 8.0-blackfire
+* 8.0-xdebug
 * 7.4
 * 7.4-blackfire
 * 7.4-xdebug

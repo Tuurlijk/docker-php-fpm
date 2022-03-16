@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:8.1-fpm
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -10,8 +10,8 @@ RUN apt-get update \
         libwebp-dev \
         libxml2-dev \
         libzip-dev \
-        zlib1g-dev \
         libzstd-dev \
+        zlib1g-dev \
         git \
         graphicsmagick \
         imagemagick \
@@ -20,7 +20,6 @@ RUN apt-get update \
         parallel \
         rsync \
         ssh \
-        sqlite \
         unzip \
         vim \
         zsh \
@@ -31,7 +30,7 @@ COPY /locale.gen /etc/
 RUN locale-gen
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+    && php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
 
@@ -40,11 +39,11 @@ RUN curl -L https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsen
     && mv mhsendmail_linux_amd64 /usr/local/bin/mhsendmail \
     && chsh root -s /bin/zsh
 
-RUN docker-php-ext-configure gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-webp-dir=/usr/include/ \
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
+    && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-configure zip \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) bz2 \
     && docker-php-ext-install -j$(nproc) intl \
@@ -54,10 +53,12 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) soap \
     && docker-php-ext-install -j$(nproc) zip \
     && yes | pecl install imagick \
-    && docker-php-ext-enable imagick \
-    && yes | pecl install igbinary \
-    && docker-php-ext-enable igbinary \
-    && yes | pecl install redis \
+    && docker-php-ext-enable imagick
+
+RUN yes | pecl install igbinary \
+    && docker-php-ext-enable igbinary
+
+RUN yes | pecl install redis \
     && docker-php-ext-enable redis
 
 # create users and groups for most common default uids
