@@ -14,6 +14,7 @@ RUN apt-get clean \
         binutils \
         cpp \ 
         dpkg-dev \
+        gcc \
         git \
         libc-dev-bin libc6-dev \
         libzip-dev \
