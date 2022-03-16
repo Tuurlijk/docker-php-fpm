@@ -1,5 +1,7 @@
 FROM php:5.6-fpm
 
+WORKDIR ../../
+
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \

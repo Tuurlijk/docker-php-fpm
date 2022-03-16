@@ -1,5 +1,7 @@
 FROM php:7.3-fpm
 
+WORKDIR ../../
+
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \

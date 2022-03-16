@@ -1,5 +1,7 @@
 FROM php:8.0-fpm
 
+WORKDIR ../../
+
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
