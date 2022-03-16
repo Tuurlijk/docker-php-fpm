@@ -1,4 +1,4 @@
-FROM michielroos/php-fpm:8.0
+FROM tuurlijk/php-fpm:8.0
 
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \

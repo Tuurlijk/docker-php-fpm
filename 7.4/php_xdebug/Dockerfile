@@ -1,4 +1,4 @@
-FROM michielroos/php-fpm:7.4
+FROM tuurlijk/php-fpm:7.4
 
 RUN yes | pecl install xdebug \
     && docker-php-ext-enable xdebug
