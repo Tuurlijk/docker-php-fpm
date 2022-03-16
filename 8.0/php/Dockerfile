@@ -1,6 +1,6 @@
 FROM php:8.0-fpm
 
-COPY etc/locale.gen /etc/
+COPY etc/locale.gen /etc/locale.gen
 
 COPY home/* /home/dev/
 COPY home/* /home/dev1/
@@ -17,7 +17,7 @@ COPY home/* /home/docker4/
 COPY home/* /home/docker5/
 COPY home/* /home/docker6/
 
-COPY etc/dev.sh /etc/profile.d/
+COPY etc/dev.sh /etc/profile.d/dev.sh
 
 RUN apt-get update \
     && apt-get upgrade -y \
