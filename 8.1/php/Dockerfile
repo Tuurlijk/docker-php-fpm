@@ -1,6 +1,6 @@
 FROM php:8.1-fpm
 
-WORKDIR ../../
+COPY etc/locale.gen /etc/
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -27,7 +27,7 @@ RUN apt-get update \
         zsh \
         --no-install-recommends
 
-COPY ./etc/locale.gen /etc/
+COPY etc/locale.gen /etc/
 
 RUN locale-gen
 
@@ -92,20 +92,20 @@ RUN set -x \
     && if ! getent group docker6; then groupadd -g 506 -r docker6; \
     useradd -u 506 -m -s /bin/zsh -g docker6 docker6; fi
 
-COPY /home/* /home/dev/
-COPY /home/* /home/dev1/
-COPY /home/* /home/dev2/
-COPY /home/* /home/dev3/
-COPY /home/* /home/dev4/
-COPY /home/* /home/dev5/
+COPY home/* /home/dev/
+COPY home/* /home/dev1/
+COPY home/* /home/dev2/
+COPY home/* /home/dev3/
+COPY home/* /home/dev4/
+COPY home/* /home/dev5/
 
-COPY /home/* /home/docker/
-COPY /home/* /home/docker1/
-COPY /home/* /home/docker2/
-COPY /home/* /home/docker3/
-COPY /home/* /home/docker4/
-COPY /home/* /home/docker5/
-COPY /home/* /home/docker6/
+COPY home/* /home/docker/
+COPY home/* /home/docker1/
+COPY home/* /home/docker2/
+COPY home/* /home/docker3/
+COPY home/* /home/docker4/
+COPY home/* /home/docker5/
+COPY home/* /home/docker6/
 
 RUN chown -R 1000:1000 /home/dev \
     && chown -R 1001:1001 /home/dev1 \
@@ -121,7 +121,7 @@ RUN chown -R 1000:1000 /home/dev \
     && chown -R 505:505 /home/docker5 \
     && chown -R 506:506 /home/docker6
 
-COPY ./etc/dev.sh /etc/profile.d/
+COPY etc/dev.sh /etc/profile.d/
 
 RUN apt-get clean \
     && apt-get -y purge \
