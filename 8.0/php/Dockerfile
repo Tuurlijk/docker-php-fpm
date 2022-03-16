@@ -25,7 +25,7 @@ RUN apt-get update \
         zsh \
         --no-install-recommends
 
-COPY /locale.gen /etc/
+COPY /etc/locale.gen /etc/
 
 RUN locale-gen
 
@@ -119,7 +119,7 @@ RUN chown -R 1000:1000 /home/dev \
     && chown -R 505:505 /home/docker5 \
     && chown -R 506:506 /home/docker6
 
-COPY /dev.sh /etc/profile.d/
+COPY /etc/dev.sh /etc/profile.d/
 
 RUN apt-get clean \
     && apt-get -y purge \
