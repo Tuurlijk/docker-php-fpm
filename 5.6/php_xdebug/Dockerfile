@@ -5,11 +5,21 @@ RUN yes | pecl install xdebug-2.5.5 \
 
 RUN apt-get clean \
     && apt-get -y purge \
+        automake \ 
+        binutils \
+        cpp \ 
+        dpkg-dev \
         git \
+        libc-dev-bin libc6-dev \
+        libzip-dev \
+        linux-libc-dev \
+        m4 \
+        make \
         mariadb-client \
-        rsync \
         parallel \
+        rsync \
         unzip \
         vim \
+        zlib1g-dev \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
