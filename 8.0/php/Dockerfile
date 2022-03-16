@@ -1,23 +1,23 @@
 FROM php:8.0-fpm
 
-COPY etc/locale.gen /etc/locale.gen
+COPY  /etc/locale.gen /etc/locale.gen
 
-COPY home/* /home/dev/
-COPY home/* /home/dev1/
-COPY home/* /home/dev2/
-COPY home/* /home/dev3/
-COPY home/* /home/dev4/
-COPY home/* /home/dev5/
+COPY  /home/* /home/dev/
+COPY  /home/* /home/dev1/
+COPY  /home/* /home/dev2/
+COPY  /home/* /home/dev3/
+COPY  /home/* /home/dev4/
+COPY  /home/* /home/dev5/
 
-COPY home/* /home/docker/
-COPY home/* /home/docker1/
-COPY home/* /home/docker2/
-COPY home/* /home/docker3/
-COPY home/* /home/docker4/
-COPY home/* /home/docker5/
-COPY home/* /home/docker6/
+COPY  /home/* /home/docker/
+COPY  /home/* /home/docker1/
+COPY  /home/* /home/docker2/
+COPY  /home/* /home/docker3/
+COPY  /home/* /home/docker4/
+COPY  /home/* /home/docker5/
+COPY  /home/* /home/docker6/
 
-COPY etc/dev.sh /etc/profile.d/dev.sh
+COPY  /etc/dev.sh /etc/profile.d/dev.sh
 
 RUN apt-get update \
     && apt-get upgrade -y \
