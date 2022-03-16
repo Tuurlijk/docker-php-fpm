@@ -20,7 +20,6 @@ RUN apt-get update \
         parallel \
         rsync \
         ssh \
-        sqlite \
         unzip \
         vim \
         zsh \
