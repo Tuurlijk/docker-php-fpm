@@ -15,6 +15,7 @@ symbols=(
 	'left' ''
 	'right' ''
 	'root' '#'
+	'whale' '🐳'
 )
 
 # Use extended color palette if available
@@ -145,7 +146,7 @@ prompt_tuurlijk_setup() {
 	PROMPT_SU="%(!.%k%F{$colours[root]}${symbols[root]}.%k%F{$colours[promptSymbol]}${symbols[right]})%f%k%b "
 	PROMPT='${PROMPT_EXIT}${(e)${PROMPT_PWD}}${PROMPT_SU}'
 
-	RPROMPT_USER_AT_HOST="%F{$colours[user]}%n%F{$colours[at]}@%F{$colours[host]}%m"
+	RPROMPT_USER_AT_HOST="${symbols[whale]} %F{$colours[host]}%m"
 	RPROMPT_HOST="%B%F{$colours[userHostBg]}${symbols[left]}%F{$colours[userHost]} $RPROMPT_USER_AT_HOST %b%F{$colours[promptSymbol]}${PHP_VERSION:+$PHP_VERSION}${MARIADB_VERSION:+MARIADB_VERSION}%f%k%b"
 	RPROMPT_EXEC_COLOUR="%F{$colours[exec]}"
 	RPROMPT='$(_prompt_tuurlijk_vcs_path_and_branch)${RPROMPT_EXEC_COLOUR}$(_prompt_tuurlijk_cmd_exec_time)${RPROMPT_HOST}'
