@@ -172,6 +172,3 @@ zstyle ':theme:tuurlijk:promptSymbol' colour 28
 source ${HOME}/.config/zsh/plugins/shrink-path.plugin.zsh
 autoload -Uz promptinit && promptinit
 prompt tuurlijk
-
-# Remove whitespace after the RPROMPT
-ZLE_RPROMPT_INDENT=0
