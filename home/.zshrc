@@ -49,25 +49,22 @@ alias -- -="cd -"
 # Keybindings
 bindkey '^w' backward-kill-word
 bindkey '^h' backward-delete-char
-autoload -Uz history-search-end
-zle -N history-incremental-search-backward-end history-search-end
-zle -N history-incremental-search-forward-end history-search-end
-bindkey '^r' history-incremental-search-backward-end
-bindkey '^s' history-incremental-search-forward-end
+autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey '\e[A' history-beginning-search-backward-end
-bindkey '\e[B' history-beginning-search-forward-end
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey "${terminfo[kcuu1]}" history-beginning-search-backward-end
+bindkey "${terminfo[kcud1]}" history-beginning-search-forward-end
+bindkey '^p' history-substring-search-up
+bindkey '^n' history-substring-search-down
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^k' kill-line
 bindkey "^f" forward-word
 bindkey "^b" backward-word
-bindkey "${terminfo[khome]}" beginning-of-line # Fn-Left, Home
-bindkey "${terminfo[kend]}" end-of-line # Fn-Right, End
-bindkey '^[^?' backward-kill-dir
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 
 # PATTERNS
@@ -171,6 +168,10 @@ path=(\
 export PATH
 
 # Load customized prompt
+zstyle ':theme:tuurlijk:promptSymbol' colour 28
 source ${HOME}/.config/zsh/plugins/shrink-path.plugin.zsh
 autoload -Uz promptinit && promptinit
 prompt tuurlijk
+
+# Remove whitespace after the RPROMPT
+ZLE_RPROMPT_INDENT=0
