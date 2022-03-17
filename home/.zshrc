@@ -1,3 +1,5 @@
+export SHELL="/bin/zsh"
+
 # Set function path
 fpath=(${HOME}/.config/zsh/functions $fpath)
 
