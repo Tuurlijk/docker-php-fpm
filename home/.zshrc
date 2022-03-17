@@ -1,8 +1,5 @@
-# Set up the prompt
-
-autoload -Uz promptinit
-promptinit
-prompt walters
+# Set function path
+fpath=(${HOME}/.config/zsh/functions $fpath)
 
 setopt histignorealldups sharehistory
 
@@ -14,27 +11,14 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
+# Set umask
+umask g-w,o-rwx
 
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
+# If command is a path, cd into it
+setopt auto_cd
 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# Show path in title
+precmd() {print -Pn "\e]0;${PWD/$HOME/\~}\a"}
 
 # Grep
 export GREP_COLOR='38;5;202'
@@ -49,9 +33,10 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;172m' # begin underline
 export LESS=-r
 
-# Dircolors
-eval $(command dircolors -b ${ZDOTDIR:-${HOME}}/.dircolors)
-
+# Load dircolors
+if [ -s ${ZDOTDIR:-${HOME}}/.dircolors ]; then
+  eval $(command dircolors -b ${ZDOTDIR:-${HOME}}/.dircolors)
+fi
 alias ls="ls --color=auto"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
@@ -89,21 +74,33 @@ bindkey '^[^?' backward-kill-dir
 # rm -rf
 ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=214')
 
-# Completions
 # Completion
+autoload -Uz compinit
+compinit
 [ -d /usr/local/share/zsh-completions ] && fpath=(/usr/local/share/zsh-completions $fpath)
-zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
-zstyle ':completion:*' cache-path ${ZDOTDIR:-${HOME}}/.config/zsh/cache              # cache path
+zstyle ':completion::complete:*' use-cache on                             # completion caching, use rehash to clear
+zstyle ':completion:*' cache-path ${ZDOTDIR:-${HOME}}/.config/zsh/cache   # cache path
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Case insensitive completion
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
 # Ignore completion functions for commands you don’t have
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # Zstyle show completion menu if 2 or more items to select
 zstyle ':completion:*' menu select=2
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
 
 # Format autocompletion style
 zstyle ':completion:*:descriptions' format "%{$fg[green]%}%d%{$reset_color%}"
@@ -133,9 +130,6 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
-# Zstyle ssh known hosts
-zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/hosts,etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
 # Zstyle autocompletion
 zstyle ':auto-fu:highlight' input bold
 zstyle ':auto-fu:highlight' completion fg=black,bold
@@ -148,3 +142,17 @@ zstyle ':completion:*:history-words' stop yes
 zstyle ':completion:*:history-words' remove-all-dups yes
 zstyle ':completion:*:history-words' list false
 zstyle ':completion:*:history-words' menu yes
+
+path=(\
+    ${HOME}/bin \
+    ./vendor/bin \
+    ./bin \
+    $path\
+    /var/www/html \
+    )
+export PATH
+
+# Load customized prompt
+source ${HOME}/.config/zsh/plugins/shrink-path.plugin.zsh
+autoload -Uz promptinit && promptinit
+prompt tuurlijk
