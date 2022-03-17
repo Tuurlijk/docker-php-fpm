@@ -146,7 +146,7 @@ prompt_tuurlijk_setup() {
 	PROMPT='${PROMPT_EXIT}${(e)${PROMPT_PWD}}${PROMPT_SU}'
 
 	RPROMPT_USER_AT_HOST="%F{$colours[user]}%n%F{$colours[at]}@%F{$colours[host]}%m"
-	RPROMPT_HOST="%B%F{$colours[userHostBg]}${SSH_TTY:+${symbols[left]}}%F{$colours[userHost]}${SSH_TTY:+ $RPROMPT_USER_AT_HOST }%f%k%b"
+	RPROMPT_HOST="%B%F{$colours[userHostBg]}${symbols[left]}%F{$colours[userHost]} $RPROMPT_USER_AT_HOST %b%F{$colours[promptSymbol]}${PHP_VERSION:+$PHP_VERSION}${MARIADB_VERSION:+MARIADB_VERSION}%f%k%b"
 	RPROMPT_EXEC_COLOUR="%F{$colours[exec]}"
 	RPROMPT='$(_prompt_tuurlijk_vcs_path_and_branch)${RPROMPT_EXEC_COLOUR}$(_prompt_tuurlijk_cmd_exec_time)${RPROMPT_HOST}'
 }
