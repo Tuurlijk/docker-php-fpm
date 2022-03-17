@@ -15,7 +15,6 @@ RUN apt-get clean \
         cpp \ 
         dpkg-dev \
         gcc \
-        git \
         libc-dev-bin libc6-dev \
         libzip-dev \
         linux-libc-dev \
@@ -25,7 +24,6 @@ RUN apt-get clean \
         parallel \
         rsync \
         unzip \
-        vim \
         zlib1g-dev \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
