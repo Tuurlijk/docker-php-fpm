@@ -27,8 +27,10 @@ RUN apt-get update \
 
 COPY  /etc/locale.gen /etc/
 
-ENV LANG C.UTF-8
-ENV LANGUAGE en_GB:en
+RUN locale-gen
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LC_CTYPE "en_US.UTF-8"
 ENV LC_NUMERIC "en_US.UTF-8"
 ENV LC_TIME "en_US.UTF-8"
@@ -42,8 +44,6 @@ ENV LC_TELEPHONE "en_US.UTF-8"
 ENV LC_MEASUREMENT "en_US.UTF-8"
 ENV LC_IDENTIFICATION "en_US.UTF-8"
 ENV LC_ALL en_US.UTF-8
-
-RUN locale-gen
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
