@@ -48,6 +48,39 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
+if [[ -f "/usr/bin/exa" ]]; then
+    alias ls='exa --group-directories-first'
+    alias l="exa -l --group-directories-first"
+    alias la="exa -la --group-directories-first"
+    # List only directories and symbolic links that point to directories
+    alias lsd='exa -ld --group-directories-first *(-/DN)'
+    # List only file beginning with "."
+    alias lsa='exa -ld --group-directories-first .*'
+
+    # Exa https://the.exa.website/docs/colour-themes
+    #
+    #  Permissions                        File sizes                       Hard links                    Details and metadata
+    #
+    #    ur User +r bit                       sn Size numbers                  lc Number of links            xx Punctuation
+    #    uw User +w bit                       sb Size unit                     lm A multi-link file          da Timestamp
+    #    ux User +x bit (files)               df Major device ID                                             in File inode
+    #    ue User +x bit (file types)          ds Minor device ID           Git                               bl Number of blocks
+    #    gr Group +r bit                                                                                     hd Table header row
+    #    gw Group +w bit                  Owners and Groups                    ga New                        lp Symlink path
+    #    gx Group +x bit                                                       gm Modified                   cc Control character
+    #    tr Others +r bit                     uu A user that’s you             gd Deleted
+    #    tw Others +w bit                     un A user that’s not             gv Renamed                Overlays
+    #    tx Others +x bit                     gu A group with you in it        gt Type change
+    #    su Higher bits (files)               gn A group without you                                         bO Broken link path
+    #    sf Higher bits (other types)
+    #    xa Extended attribute marker
+    #
+    export EXA_COLORS="da=38;5;67:sn=38;5;28:uu=38;5;65:sb=38;33"
+fi
+if [[ -f /etc/debian_version ]]; then
+    alias grep="grep --color=auto"
+fi
+
 # Keybindings
 bindkey '^w' backward-kill-word
 bindkey '^h' backward-delete-char

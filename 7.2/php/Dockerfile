@@ -3,6 +3,10 @@ FROM php:7.2-fpm
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
+        exa \
+        git \
+        graphicsmagick \
+        imagemagick \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmagickwand-dev \
@@ -10,19 +14,16 @@ RUN apt-get update \
         libwebp-dev \
         libxml2-dev \
         libzip-dev \
-        zlib1g-dev \
         libzstd-dev \
-        git \
-        graphicsmagick \
-        imagemagick \
         locales \
         mariadb-client \
         parallel \
         rsync \
-        ssh \
         sqlite \
+        ssh \
         unzip \
         vim \
+        zlib1g-dev \
         zsh \
         --no-install-recommends
 

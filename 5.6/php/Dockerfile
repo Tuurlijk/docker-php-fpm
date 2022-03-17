@@ -3,6 +3,9 @@ FROM php:5.6-fpm
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
+        git \
+        graphicsmagick \
+        imagemagick \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmagickwand-dev \
@@ -10,18 +13,15 @@ RUN apt-get update \
         libwebp-dev \
         libxml2-dev \
         libzip-dev \
-        zlib1g-dev \
-        git \
-        graphicsmagick \
-        imagemagick \
         locales \
         mariadb-client \
         parallel \
         rsync \
-        ssh \
         sqlite \
+        ssh \
         unzip \
         vim \
+        zlib1g-dev \
         zsh \
         --no-install-recommends
 

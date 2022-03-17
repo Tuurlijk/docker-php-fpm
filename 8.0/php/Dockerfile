@@ -3,6 +3,10 @@ FROM php:8.0-fpm
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
+        exa \
+        git \
+        graphicsmagick \
+        imagemagick \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmagickwand-dev \
@@ -11,17 +15,15 @@ RUN apt-get update \
         libxml2-dev \
         libzip-dev \
         libzstd-dev \
-        zlib1g-dev \
-        git \
-        graphicsmagick \
-        imagemagick \
         locales \
         mariadb-client \
         parallel \
         rsync \
+        sqlite3 \
         ssh \
         unzip \
         vim \
+        zlib1g-dev \
         zsh \
         --no-install-recommends
 
