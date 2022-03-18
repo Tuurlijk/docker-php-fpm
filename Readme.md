@@ -20,6 +20,9 @@ Currently images are being built for:
 * 7.2
 * 7.2-blackfire
 * 7.2-xdebug
+* 7.1
+* 7.1-blackfire
+* 7.1-xdebug
 * 5.6
 * 5.6-blackfire
 * 5.6-xdebug
@@ -40,6 +43,7 @@ Currently images are being built for:
 
 # Added tools:
 * composer
+* exa
 * git
 * graphicsmagick
 * imagemagick
