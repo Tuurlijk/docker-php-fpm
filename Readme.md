@@ -42,7 +42,7 @@ Currently images are being built for:
 * zip
 
 # Added tools:
-* composer
+* composer (v2) and composer1 (v1)
 * exa
 * git
 * graphicsmagick
