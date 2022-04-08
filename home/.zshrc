@@ -50,12 +50,12 @@ alias -- -="cd -"
 
 if [[ -f "/usr/bin/exa" ]]; then
     alias ls='exa --group-directories-first'
-    alias l="exa -l --group-directories-first"
-    alias la="exa -la --group-directories-first"
+    alias l="exa -lg --group-directories-first"
+    alias la="exa -lag --group-directories-first"
     # List only directories and symbolic links that point to directories
-    alias lsd='exa -ld --group-directories-first *(-/DN)'
+    alias lsd='exa -lgd --group-directories-first *(-/DN)'
     # List only file beginning with "."
-    alias lsa='exa -ld --group-directories-first .*'
+    alias lsa='exa -ldg --group-directories-first .*'
 
     # Exa https://the.exa.website/docs/colour-themes
     #
