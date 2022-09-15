@@ -47,7 +47,7 @@ ENV LC_MEASUREMENT "en_US.UTF-8"
 ENV LC_IDENTIFICATION "en_US.UTF-8"
 ENV LC_ALL en_US.UTF-8
 
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer1
+COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer1
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/
 
