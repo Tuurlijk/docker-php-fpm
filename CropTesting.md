@@ -11,3 +11,5 @@
 `DOCKER_BUILDKIT=1 docker build -f 8.0/php/Dockerfile .`
 
 `DOCKER_BUILDKIT=1 docker build -f 8.1/php/Dockerfile .`
+
+`DOCKER_BUILDKIT=1 docker build -f 8.2/php/Dockerfile .`
