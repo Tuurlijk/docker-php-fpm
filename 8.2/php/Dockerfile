@@ -1,4 +1,4 @@
-FROM php:8.2.0RC4-fpm
+FROM php:8.2
 
 RUN apt-get update \
     && apt-get upgrade -y \
