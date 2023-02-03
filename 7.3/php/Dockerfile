@@ -13,6 +13,7 @@ RUN apt-get update \
         libpng-dev \
         libwebp-dev \
         libxml2-dev \
+        libyaml-dev \
         libzip-dev \
         libzstd-dev \
         locales \
@@ -75,6 +76,9 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-enable igbinary \
     && yes | pecl install redis \
     && docker-php-ext-enable redis
+
+RUN yes | pecl install yaml \
+    && docker-php-ext-enable yaml
 
 # create users and groups for most common default uids
 RUN set -x \
