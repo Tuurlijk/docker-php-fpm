@@ -42,6 +42,7 @@ Currently images are being built for:
 * redis
 * soap
 * xdebug
+* yaml
 * zip
 
 # Added tools:

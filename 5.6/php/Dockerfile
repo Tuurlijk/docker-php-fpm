@@ -12,7 +12,6 @@ RUN apt-get update \
         libpng-dev \
         libwebp-dev \
         libxml2-dev \
-        libyaml-dev \
         libzip-dev \
         locales \
         mariadb-client \
@@ -70,9 +69,6 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) zip \
     && yes | pecl install imagick \
     && docker-php-ext-enable imagick
-
-RUN yes | pecl install yaml \
-    && docker-php-ext-enable yaml
 
 # create users and groups for most common default uids
 RUN set -x \
