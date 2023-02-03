@@ -1,6 +1,6 @@
 FROM tuurlijk/php-fpm:7.4
 
-RUN yes | pecl install xdebug \
+RUN yes | pecl install  xdebug-2.9.8 \
     && docker-php-ext-enable xdebug
 
 RUN apt-get clean \

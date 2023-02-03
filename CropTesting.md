@@ -1,15 +1,58 @@
-`DOCKER_BUILDKIT=1 docker build -f 5.6/php/Dockerfile .`
+# Croptesting
 
-`DOCKER_BUILDKIT=1 docker build -f 7.1/php/Dockerfile .`
+## 5.6
 
-`DOCKER_BUILDKIT=1 docker build -f 7.2/php/Dockerfile .`
+```bash
+DOCKER_BUILDKIT=1 docker build -f 5.6/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 5.6/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 5.6/php_xdebug/Dockerfile .
+```
+## 7.1
 
-`DOCKER_BUILDKIT=1 docker build -f 7.3/php/Dockerfile .`
+```bash
+DOCKER_BUILDKIT=1 docker build -f 7.1/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.1/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.1/php_xdebug/Dockerfile .
+```
+## 7.2
 
-`DOCKER_BUILDKIT=1 docker build -f 7.4/php/Dockerfile .`
+```bash
+DOCKER_BUILDKIT=1 docker build -f 7.2/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.2/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.2/php_xdebug/Dockerfile .
+```
+## 7.3
 
-`DOCKER_BUILDKIT=1 docker build -f 8.0/php/Dockerfile .`
+```bash
+DOCKER_BUILDKIT=1 docker build -f 7.3/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.3/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.3/php_xdebug/Dockerfile .
+```
+## 7.4
 
-`DOCKER_BUILDKIT=1 docker build -f 8.1/php/Dockerfile .`
+```bash
+DOCKER_BUILDKIT=1 docker build -f 7.4/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.4/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 7.4/php_xdebug/Dockerfile .
+```
+## 8.0
 
-`DOCKER_BUILDKIT=1 docker build -f 8.2/php/Dockerfile .`
+```bash
+DOCKER_BUILDKIT=1 docker build -f 8.0/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 8.0/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 8.0/php_xdebug/Dockerfile .
+```
+## 8.1
+
+```bash
+DOCKER_BUILDKIT=1 docker build -f 8.1/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 8.1/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 8.1/php_xdebug/Dockerfile .
+```
+## 8.2
+
+```bash
+DOCKER_BUILDKIT=1 docker build -f 8.2/php/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 8.2/php_blackfire/Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f 8.2/php_xdebug/Dockerfile .
+```
