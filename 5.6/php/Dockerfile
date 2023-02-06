@@ -64,6 +64,7 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) intl \
     && docker-php-ext-install -j$(nproc) mysqli \
     && docker-php-ext-install -j$(nproc) opcache \
+    && docker-php-ext-install -j$(nproc) pcntl \
     && docker-php-ext-install -j$(nproc) pdo_mysql \
     && docker-php-ext-install -j$(nproc) soap \
     && docker-php-ext-install -j$(nproc) zip \
@@ -139,5 +140,8 @@ RUN apt-get clean \
         libpng-dev \
         libwebp-dev \
         libxml2-dev \
+        libzip-dev \
+        libzstd-dev \
+        zlib1g-dev \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
