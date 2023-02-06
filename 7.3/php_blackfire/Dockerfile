@@ -23,6 +23,5 @@ RUN apt-get clean \
         mariadb-client \
         parallel \
         rsync \
-        unzip \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
