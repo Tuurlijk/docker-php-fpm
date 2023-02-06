@@ -38,6 +38,7 @@ Currently, images are being built for:
 * intl
 * mysqli
 * opcache
+* pcntl
 * pdo_mysql
 * redis
 * soap
