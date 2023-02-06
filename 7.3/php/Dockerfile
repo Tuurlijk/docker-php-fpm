@@ -145,7 +145,6 @@ COPY  /etc/dev.sh /etc/profile.d/
 RUN apt-get clean \
     && apt-get -y purge \
         libfreetype6-dev \
-        libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmagickwand-dev \
         libpng-dev \

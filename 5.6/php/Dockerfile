@@ -130,7 +130,6 @@ RUN chown -R 1000:1000 /home/dev \
     && chown -R 505:505 /home/docker5 \
     && chown -R 506:506 /home/docker6
 
-
 COPY  /etc/dev.sh /etc/profile.d/
 
 RUN apt-get clean \
@@ -141,8 +140,6 @@ RUN apt-get clean \
         libpng-dev \
         libwebp-dev \
         libxml2-dev \
-        libzip-dev \
         libzstd-dev \
-        zlib1g-dev \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
