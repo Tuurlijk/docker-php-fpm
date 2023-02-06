@@ -10,13 +10,13 @@ RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
 
 RUN apt-get clean \
     && apt-get -y purge \
-        automake \ 
+        automake \
         binutils \
-        cpp \ 
+        cpp \
         dpkg-dev \
         gcc \
-        libc-dev-bin libc6-dev \
-        libzip-dev \
+        libc-dev-bin \
+        libc6-dev \
         linux-libc-dev \
         m4 \
         make \
@@ -24,6 +24,5 @@ RUN apt-get clean \
         parallel \
         rsync \
         unzip \
-        zlib1g-dev \
     && apt-get autoremove --purge -y \
     && rm -rf /var/lib/apt/lists/* /usr/src/*
