@@ -1,13 +1,19 @@
 FROM tuurlijk/php-fpm:7.3
 
+RUN apt-get install -y \
+        libzip-dev \
+        libzstd-dev \
+        zlib1g-dev \
+        --no-install-recommends
+
 RUN yes | pecl install  xdebug-2.9.8 \
     && docker-php-ext-enable xdebug
 
 RUN apt-get clean \
     && apt-get -y purge \
-        automake \ 
+        automake \
         binutils \
-        cpp \ 
+        cpp \
         dpkg-dev \
         gcc \
         libc-dev-bin libc6-dev \
