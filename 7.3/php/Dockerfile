@@ -151,8 +151,6 @@ RUN apt-get clean \
         libpng-dev \
         libwebp-dev \
         libxml2-dev \
-        libyaml-dev \
-        libzip-dev \
         libzstd-dev \
         zlib1g-dev \
     && apt-get autoremove --purge -y \
