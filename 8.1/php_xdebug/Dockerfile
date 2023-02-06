@@ -10,9 +10,6 @@ RUN apt-get clean \
         cpp \
         dpkg-dev \
         gcc \
-        libc-dev-bin \
-        libc6-dev \
-        linux-libc-dev \
         m4 \
         make \
         mariadb-client \
