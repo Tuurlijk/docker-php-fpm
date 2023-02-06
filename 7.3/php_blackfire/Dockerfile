@@ -1,6 +1,7 @@
 FROM tuurlijk/php-fpm:7.3
 
-RUN apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y \
         libzip-dev \
         libzstd-dev \
         zlib1g-dev \
