@@ -67,6 +67,7 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) intl \
     && docker-php-ext-install -j$(nproc) mysqli \
     && docker-php-ext-install -j$(nproc) opcache \
+    && docker-php-ext-configure pcntl --enable-pcntl \
     && docker-php-ext-install -j$(nproc) pcntl \
     && docker-php-ext-install -j$(nproc) pdo_mysql \
     && docker-php-ext-install -j$(nproc) soap \
