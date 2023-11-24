@@ -9,6 +9,7 @@ RUN apt-get update \
         imagemagick \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
+        liblz4-dev \
         libmagickwand-dev \
         libpng-dev \
         libwebp-dev \
@@ -78,9 +79,9 @@ RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-w
 RUN yes | pecl install igbinary \
     && docker-php-ext-enable igbinary
 
-RUN yes | pecl install redis \
+RUN yes | pecl install --configureoptions 'enable-redis-msgpack="no"' redis \
     && docker-php-ext-enable redis
-    
+
 RUN yes | pecl install yaml \
     && docker-php-ext-enable yaml
 
