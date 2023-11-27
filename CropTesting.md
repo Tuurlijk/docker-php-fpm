@@ -56,3 +56,10 @@ DOCKER_BUILDKIT=1 docker build -t croptesting -f 8.2/php/Dockerfile . && docker 
 DOCKER_BUILDKIT=1 docker build -t croptesting -f 8.2/php_blackfire/Dockerfile . && docker run croptesting
 DOCKER_BUILDKIT=1 docker build -t croptesting -f 8.2/php_xdebug/Dockerfile . && docker run croptesting
 ```
+## 8.3
+
+```bash
+DOCKER_BUILDKIT=1 docker build -t croptesting -f 8.3/php/Dockerfile . && docker run croptesting
+DOCKER_BUILDKIT=1 docker build -t croptesting -f 8.3/php_blackfire/Dockerfile . && docker run croptesting
+DOCKER_BUILDKIT=1 docker build -t croptesting -f 8.3/php_xdebug/Dockerfile . && docker run croptesting
+```
