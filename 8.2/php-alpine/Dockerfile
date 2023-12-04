@@ -1,32 +1,25 @@
 FROM php:8.2-fpm-alpine
 
 RUN apk --update --no-progress add \
-    autoconf \
     exa \
-    freetype-dev \
-    g++ \
     git \
     graphicsmagick \
-    icu-dev \
     imagemagick \
-    imagemagick-dev \
-    libgomp \
-    libjpeg-turbo-dev \
-    libpng-dev \
-    libtool \
-    libwebp-dev \
-    libxml2-dev \
-    lz4-dev\
     make \
     mariadb-client \
-    musl-locales\
+    musl-locales \
     openssh-client-default \
     parallel \
     php82-bz2 \
+    php82-gd \
     php82-intl \
     php82-mysqli \
     php82-opcache \
     php82-pcntl \
+    php82-pecl-igbinary \
+    php82-pecl-imagick \
+    php82-pecl-redis \
+    php82-pecl-yaml \
     php82-pdo_mysql \
     php82-soap \
     php82-zip \
@@ -34,9 +27,7 @@ RUN apk --update --no-progress add \
     shadow \
     sqlite \
     unzip \
-    yaml-dev \
-    zsh\
-    zstd-dev
+    zsh
 
 ENV LANG en_US
 ENV LANGUAGE en_US:en
@@ -61,20 +52,6 @@ COPY --from=composer:2 /usr/bin/composer /usr/local/bin/
 RUN curl -L https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o mhsendmail_linux_amd64 \
     && chmod +x mhsendmail_linux_amd64 \
     && mv mhsendmail_linux_amd64 /usr/local/bin/mhsendmail
-
-RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install -j$(nproc) gd \
-    && yes | pecl install imagick \
-    && docker-php-ext-enable imagick
-
-RUN yes | pecl install igbinary \
-    && docker-php-ext-enable igbinary
-
-RUN yes | pecl install --configureoptions 'enable-redis-msgpack="no"' redis \
-    && docker-php-ext-enable redis
-
-RUN yes | pecl install yaml \
-    && docker-php-ext-enable yaml
 
 # create users and groups for most common default uids
 RUN set -x \
@@ -136,16 +113,4 @@ RUN chown -R 1000:1000 /home/dev \
 
 COPY  /etc/dev.sh /etc/profile.d/
 
-RUN apk del --no-progress \
-    autoconf \
-    bzip2-dev \
-    freetype-dev \
-    g++ \
-    libjpeg-turbo-dev \
-    libpng-dev \
-    libwebp-dev \
-    libxml2-dev \
-    libzip-dev \
-    lz4-dev\
-    pcre-dev \
-    && rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
+RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
