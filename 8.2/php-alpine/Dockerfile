@@ -2,7 +2,6 @@ FROM php:8.2-fpm-alpine
 
 RUN apk --update --no-progress add \
     autoconf \
-    bzip2-dev \
     exa \
     freetype-dev \
     g++ \
@@ -17,21 +16,28 @@ RUN apk --update --no-progress add \
     libtool \
     libwebp-dev \
     libxml2-dev \
-    libzip-dev \
     lz4-dev\
     make \
     mariadb-client \
     musl-locales\
     openssh-client-default \
     parallel \
-    pcre-dev \
+    php82-bz2 \
+    php82-intl \
+    php82-mysqli \
+    php82-opcache \
+    php82-pcntl \
+    php82-pdo_mysql \
+    php82-pecl-igbinary \
+    php82-soap \
+    php82-zip \
     rsync \
     shadow \
     sqlite \
     unzip \
     yaml-dev \
-    zlib-dev \
-    zsh
+    zsh\
+    zstd-dev
 
 ENV LANG en_US
 ENV LANGUAGE en_US:en
@@ -58,20 +64,7 @@ RUN curl -L https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsen
     && mv mhsendmail_linux_amd64 /usr/local/bin/mhsendmail
 
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
-    && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-configure zip \
     && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install -j$(nproc) bz2 \
-    && docker-php-ext-install -j$(nproc) intl \
-    && docker-php-ext-install -j$(nproc) mysqli \
-    && docker-php-ext-install -j$(nproc) opcache \
-    && docker-php-ext-configure pcntl --enable-pcntl \
-    && docker-php-ext-install -j$(nproc) pcntl \
-    && docker-php-ext-install -j$(nproc) pdo_mysql \
-    && docker-php-ext-install -j$(nproc) soap \
-    && docker-php-ext-install -j$(nproc) zip \
     && yes | pecl install imagick \
     && docker-php-ext-enable imagick
 
