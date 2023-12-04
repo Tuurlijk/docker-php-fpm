@@ -30,6 +30,8 @@ RUN apk --update --no-progress add \
     zsh \
     zsh-vcs
 
+RUN mv /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php82/modules
+
 ENV LANG en_US
 ENV LANGUAGE en_US:en
 ENV LC_CTYPE "en_US"
