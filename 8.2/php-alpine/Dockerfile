@@ -19,7 +19,6 @@ RUN apk --update --no-progress add \
     php82-pdo_mysql \
     php82-pecl-igbinary \
     php82-pecl-imagick \
-    php82-pecl-redis \
     php82-pecl-yaml \
     php82-soap \
     php82-zip \
@@ -30,7 +29,21 @@ RUN apk --update --no-progress add \
     zsh \
     zsh-vcs
 
-RUN mv /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php82/modules
+RUN cp -pr /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php82/modules
+
+RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+
+RUN touch /usr/local/etc/php/conf.d/docker-modules.ini \
+    && echo $'extension_dir=/usr/lib/php82/modules \n\
+extension=bz2 \n\
+extension=gd \n\
+extension=igbinary \n\
+extension=intl \n\
+extension=mysqli \n\
+extension=pdo_mysql \n\
+extension=soap \n\
+zend_extension=opcache.so \n\
+' > /usr/local/etc/php/conf.d/docker-modules.ini
 
 ENV LANG en_US
 ENV LANGUAGE en_US:en
