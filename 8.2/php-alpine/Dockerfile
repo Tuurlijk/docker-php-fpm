@@ -5,7 +5,6 @@ RUN apk --update --no-progress add \
     git \
     graphicsmagick \
     imagemagick \
-    make \
     mariadb-client \
     musl-locales \
     openssh-client-default \
@@ -19,7 +18,11 @@ RUN apk --update --no-progress add \
     php82-pdo_mysql \
     php82-pecl-igbinary \
     php82-pecl-imagick \
+    php82-pecl-msgpack \
+    php82-pecl-redis \
     php82-pecl-yaml \
+    php82-session \
+    php82-sockets \
     php82-soap \
     php82-zip \
     rsync \
@@ -39,8 +42,10 @@ extension=bz2 \n\
 extension=gd \n\
 extension=igbinary \n\
 extension=intl \n\
+extension=msgpack \n\
 extension=mysqli \n\
 extension=pdo_mysql \n\
+extension=redis \n\
 extension=soap \n\
 zend_extension=opcache.so \n\
 ' > /usr/local/etc/php/conf.d/docker-modules.ini
