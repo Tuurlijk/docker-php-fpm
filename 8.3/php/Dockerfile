@@ -1,4 +1,4 @@
-FROM php:8.3.0RC6-fpm
+FROM php:8.3.0
 
 RUN apt-get update \
     && apt-get upgrade -y \
