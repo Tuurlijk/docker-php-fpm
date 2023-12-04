@@ -5,6 +5,9 @@ RUN apk --update --no-progress add \
 
 RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
 
+RUN mkdir -p /etc/supervisor/conf.d \
+    && /usr/bin/echo_supervisord_conf > /etc/supervisor/supervisord.conf \
+
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisor/supervisord.conf"]
 
 WORKDIR /etc/supervisor/conf.d/
