@@ -36,7 +36,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;172m' # begin underline
 export LESS=-r
 
 # Load dircolors
-if [ -s ${ZDOTDIR:-${HOME}}/.dircolors ]; then
+if [ -s ${ZDOTDIR:-${HOME}}/.dircolors ] && [[ -f "/usr/bin/dircolors" ]]; then
   eval $(command dircolors -b ${ZDOTDIR:-${HOME}}/.dircolors)
 fi
 alias ls="ls --color=auto"
