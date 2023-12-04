@@ -16,18 +16,19 @@ RUN apk --update --no-progress add \
     php82-mysqli \
     php82-opcache \
     php82-pcntl \
+    php82-pdo_mysql \
     php82-pecl-igbinary \
     php82-pecl-imagick \
     php82-pecl-redis \
     php82-pecl-yaml \
-    php82-pdo_mysql \
     php82-soap \
     php82-zip \
     rsync \
     shadow \
     sqlite \
     unzip \
-    zsh
+    zsh \
+    zsh-vcs
 
 ENV LANG en_US
 ENV LANGUAGE en_US:en
