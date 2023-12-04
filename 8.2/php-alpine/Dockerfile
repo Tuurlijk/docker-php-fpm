@@ -28,7 +28,6 @@ RUN apk --update --no-progress add \
     php82-opcache \
     php82-pcntl \
     php82-pdo_mysql \
-    php82-pecl-igbinary \
     php82-soap \
     php82-zip \
     rsync \
