@@ -1,26 +1,12 @@
-FROM tuurlijk/php-fpm:8.3
+FROM tuurlijk/php-fpm:8.3-alpine
 
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y \
-        supervisor \
-        --no-install-recommends
+RUN apk --update --no-progress add supervisor
 
-RUN apt-get clean \
-    && apt-get -y purge \
-        automake \
-        binutils \
-        cpp \
-        dpkg-dev \
-        gcc \
-        m4 \
-        make \
-        mariadb-client \
-        parallel \
-        rsync \
-        unzip \
-    && apt-get autoremove --purge -y \
-    && rm -rf /var/lib/apt/lists/* /usr/src/*
+RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
+
+RUN mkdir -p /etc/supervisor/conf.d && mkdir -p /var/log/supervisor
+
+COPY /etc/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisor/supervisord.conf"]
 
