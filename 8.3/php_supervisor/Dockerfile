@@ -1,4 +1,4 @@
-FROM tuurlijk/php-fpm:8.3-alpine
+FROM tuurlijk/php-fpm:8.3
 
 RUN apk --update --no-progress add supervisor
 

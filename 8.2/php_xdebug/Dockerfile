@@ -1,20 +1,10 @@
 FROM tuurlijk/php-fpm:8.2
 
-RUN yes | pecl install xdebug \
-    && docker-php-ext-enable xdebug
+RUN apk --update --no-progress add \
+    php82-pecl-xdebug
 
-RUN apt-get clean \
-    && apt-get -y purge \
-        automake \
-        binutils \
-        cpp \
-        dpkg-dev \
-        gcc \
-        m4 \
-        make \
-        mariadb-client \
-        parallel \
-        rsync \
-        unzip \
-    && apt-get autoremove --purge -y \
-    && rm -rf /var/lib/apt/lists/* /usr/src/*
+RUN touch /usr/local/etc/php/conf.d/docker-modules.ini \
+    && echo $'extension=xdebug \n\
+' >> /usr/local/etc/php/conf.d/docker-modules.ini
+
+RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*

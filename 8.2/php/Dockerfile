@@ -1,53 +1,70 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y \
-        exa \
-        git \
-        graphicsmagick \
-        imagemagick \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        liblz4-dev \
-        libmagickwand-dev \
-        libpng-dev \
-        libwebp-dev \
-        libxml2-dev \
-        libyaml-dev \
-        libzip-dev \
-        libzstd-dev \
-        locales \
-        mariadb-client \
-        parallel \
-        rsync \
-        sqlite3 \
-        ssh \
-        unzip \
-        vim \
-        zlib1g-dev \
-        zsh \
-        --no-install-recommends
+RUN apk --update --no-progress add \
+    exa \
+    git \
+    graphicsmagick \
+    imagemagick \
+    mariadb-client \
+    musl-locales \
+    openssh-client-default \
+    parallel \
+    php82-bz2 \
+    php82-gd \
+    php82-intl \
+    php82-mysqli \
+    php82-opcache \
+    php82-pcntl \
+    php82-pdo_mysql \
+    php82-pecl-igbinary \
+    php82-pecl-imagick \
+    php82-pecl-msgpack \
+    php82-pecl-redis \
+    php82-pecl-yaml \
+    php82-session \
+    php82-sockets \
+    php82-soap \
+    php82-zip \
+    rsync \
+    shadow \
+    sqlite \
+    unzip \
+    zsh \
+    zsh-vcs
 
-COPY  /etc/locale.gen /etc/
+RUN cp -pr /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php82/modules
 
-RUN locale-gen
+RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
-ENV LANG en_US.UTF-8
+RUN touch /usr/local/etc/php/conf.d/docker-modules.ini \
+    && echo $'extension_dir=/usr/lib/php82/modules \n\
+extension=bz2 \n\
+extension=gd \n\
+extension=igbinary \n\
+extension=intl \n\
+extension=msgpack \n\
+extension=mysqli \n\
+extension=pdo_mysql \n\
+extension=redis \n\
+extension=soap \n\
+zend_extension=opcache.so \n\
+' > /usr/local/etc/php/conf.d/docker-modules.ini
+
+ENV LANG en_US
 ENV LANGUAGE en_US:en
-ENV LC_CTYPE "en_US.UTF-8"
-ENV LC_NUMERIC "en_US.UTF-8"
-ENV LC_TIME "en_US.UTF-8"
-ENV LC_COLLATE "en_US.UTF-8"
-ENV LC_MONETARY "en_US.UTF-8"
-ENV LC_MESSAGES "en_US.UTF-8"
-ENV LC_PAPER "en_US.UTF-8"
-ENV LC_NAME "en_US.UTF-8"
-ENV LC_ADDRESS "en_US.UTF-8"
-ENV LC_TELEPHONE "en_US.UTF-8"
-ENV LC_MEASUREMENT "en_US.UTF-8"
-ENV LC_IDENTIFICATION "en_US.UTF-8"
-ENV LC_ALL en_US.UTF-8
+ENV LC_CTYPE "en_US"
+ENV LC_NUMERIC "en_US"
+ENV LC_TIME "en_US"
+ENV LC_COLLATE "en_US"
+ENV LC_MONETARY "en_US"
+ENV LC_MESSAGES "en_US"
+ENV LC_PAPER "en_US"
+ENV LC_NAME "en_US"
+ENV LC_ADDRESS "en_US"
+ENV LC_TELEPHONE "en_US"
+ENV LC_MEASUREMENT "en_US"
+ENV LC_IDENTIFICATION "en_US"
+ENV LC_ALL en_US
 
 COPY --from=composer:1 /usr/bin/composer /usr/local/bin/composer1
 
@@ -55,35 +72,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/local/bin/
 
 RUN curl -L https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o mhsendmail_linux_amd64 \
     && chmod +x mhsendmail_linux_amd64 \
-    && mv mhsendmail_linux_amd64 /usr/local/bin/mhsendmail \
-    && chsh root -s /bin/zsh
-
-RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
-    && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-configure zip \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install -j$(nproc) bz2 \
-    && docker-php-ext-install -j$(nproc) intl \
-    && docker-php-ext-install -j$(nproc) mysqli \
-    && docker-php-ext-install -j$(nproc) opcache \
-    && docker-php-ext-configure pcntl --enable-pcntl \
-    && docker-php-ext-install -j$(nproc) pcntl \
-    && docker-php-ext-install -j$(nproc) pdo_mysql \
-    && docker-php-ext-install -j$(nproc) soap \
-    && docker-php-ext-install -j$(nproc) zip \
-    && yes | pecl install imagick \
-    && docker-php-ext-enable imagick
-
-RUN yes | pecl install igbinary \
-    && docker-php-ext-enable igbinary
-
-RUN yes | pecl install --configureoptions 'enable-redis-msgpack="no"' redis \
-    && docker-php-ext-enable redis
-
-RUN yes | pecl install yaml \
-    && docker-php-ext-enable yaml
+    && mv mhsendmail_linux_amd64 /usr/local/bin/mhsendmail
 
 # create users and groups for most common default uids
 RUN set -x \
@@ -145,14 +134,4 @@ RUN chown -R 1000:1000 /home/dev \
 
 COPY  /etc/dev.sh /etc/profile.d/
 
-RUN apt-get clean \
-    && apt-get -y purge \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmagickwand-dev \
-        libpng-dev \
-        libwebp-dev \
-        libxml2-dev \
-        libzstd-dev \
-    && apt-get autoremove --purge -y \
-    && rm -rf /var/lib/apt/lists/* /usr/src/*
+RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*

@@ -6,16 +6,16 @@ The stock PHP fpm image with some added tools for use in local development.
 
 Currently, images are being built for:
 
-| version | plain php | blackfire | xdebug | supervisor | alpine |
-|---------|-----------|-----------|--------|------------|--------|
-| 8.3     | ✔️        | ✔️        | ✔️     | ✔️         |        |
-| 8.2     | ✔️        | ✔️        | ✔️     | ✔️         | ✔️     |
-| 8.1     | ✔️        | ✔️        | ✔️     | ✔️         | ️      |
-| 7.4     | ✔️        | ✔️        | ✔️     | ️          | ️      |
-| 7.3     | ✔️        | ✔️        | ✔️     | ️          | ️      |
-| 7.2     | ✔️        | ✔️        | ✔️     | ️          | ️      |
-| 7.1     | ✔️        | ✔️        | ✔️     | ️          | ️      |
-| 5.6     | ✔️        | ✔️        | ✔️     | ️          | ️      |
+| version | plain php | blackfire | xdebug | supervisor | alpine based |
+|---------|-----------|-----------|--------|------------|--------------|
+| 8.3     | ✔️        | ✔️        | ✔️     | ✔️         | ✔️           |
+| 8.2     | ✔️        | ✔️        | ✔️     | ✔️         | ✔️           |
+| 8.1     | ✔️        | ✔️        | ✔️     | ✔️         | ️            |
+| 7.4     | ✔️        | ✔️        | ✔️     | ️          | ️            |
+| 7.3     | ✔️        | ✔️        | ✔️     | ️          | ️            |
+| 7.2     | ✔️        | ✔️        | ✔️     | ️          | ️            |
+| 7.1     | ✔️        | ✔️        | ✔️     | ️          | ️            |
+| 5.6     | ✔️        | ✔️        | ✔️     | ️          | ️            |
 
 # Added PHP modules
 * blackfire
