@@ -51,7 +51,6 @@ extension=mysqli \n\
 extension=pdo_mysql \n\
 extension=redis \n\
 extension=soap \n\
-extension=zip \n\
 zend_extension=opcache.so \n\
 ' > /usr/local/etc/php/conf.d/docker-modules.ini
 
