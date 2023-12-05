@@ -2,7 +2,7 @@ FROM tuurlijk/php-fpm:8.2
 
 RUN apk --update --no-progress add supervisor
 
-RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
+RUN rm -rf /var/lib/apk/* /var/cache/apk/*
 
 RUN mkdir -p /etc/supervisor/conf.d && mkdir -p /var/log/supervisor
 

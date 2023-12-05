@@ -24,13 +24,17 @@ RUN apk --update --no-progress add \
     php82-session \
     php82-sockets \
     php82-soap \
-    php82-zip \
     rsync \
     shadow \
     sqlite \
     unzip \
     zsh \
     zsh-vcs
+
+RUN apk add --no-cache \
+      libzip-dev \
+      zip \
+    && docker-php-ext-install zip
 
 RUN cp -pr /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php82/modules
 
@@ -139,4 +143,4 @@ RUN chown -R 1000:1000 /home/docker \
 
 COPY  /etc/dev.sh /etc/profile.d/
 
-RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
+RUN rm -rf /var/lib/apk/* /var/cache/apk/*

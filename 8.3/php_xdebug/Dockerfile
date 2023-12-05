@@ -7,4 +7,4 @@ RUN touch /usr/local/etc/php/conf.d/docker-modules.ini \
     && echo $'extension=xdebug.so \n\
 ' >> /usr/local/etc/php/conf.d/docker-modules.ini
 
-RUN rm -rf /var/lib/apk/* /usr/src/* /var/cache/apk/*
+RUN rm -rf /var/lib/apk/* /var/cache/apk/*
