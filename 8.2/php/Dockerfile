@@ -131,7 +131,7 @@ RUN chown -R 1000:1000 /home/docker \
     && chown -R 1003:1003 /home/docker3 \
     && chown -R 1004:1004 /home/docker4 \
     && chown -R 1005:1005 /home/docker5 \
-    && chown -R 1005:1005 /home/docker6 \
+    && chown -R 1006:1006 /home/docker6 \
     && chown -R 500:500 /home/macdocker \
     && chown -R 501:501 /home/macdocker1 \
     && chown -R 502:502 /home/macdocker2 \
