@@ -9,7 +9,6 @@ RUN apk --update --no-progress add \
     musl-locales \
     openssh-client-default \
     parallel \
-    php82-apcu \
     php82-bz2 \
     php82-gd \
     php82-intl \
