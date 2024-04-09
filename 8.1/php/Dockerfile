@@ -63,6 +63,7 @@ RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-w
     && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure zip \
+    && docker-php-ext-install -j$(nproc) apc \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) bz2 \
     && docker-php-ext-install -j$(nproc) intl \
