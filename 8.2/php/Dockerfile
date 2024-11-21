@@ -45,6 +45,7 @@ RUN touch /usr/local/etc/php/conf.d/docker-modules.ini \
 extension=bz2 \n\
 extension=gd \n\
 extension=igbinary \n\
+extension=imagick \n\
 extension=intl \n\
 extension=msgpack \n\
 extension=mysqli \n\
