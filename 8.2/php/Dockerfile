@@ -5,6 +5,7 @@ RUN apk --update --no-progress add \
     git \
     graphicsmagick \
     imagemagick \
+    libwebp-tools \
     mariadb-client \
     musl-locales \
     openssh-client-default \
