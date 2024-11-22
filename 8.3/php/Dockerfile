@@ -10,21 +10,21 @@ RUN apk --update --no-progress add \
     musl-locales \
     openssh-client-default \
     parallel \
-    php82-bz2 \
-    php82-gd \
-    php82-intl \
-    php82-mysqli \
-    php82-opcache \
-    php82-pcntl \
-    php82-pdo_mysql \
-    php82-pecl-igbinary \
-    php82-pecl-imagick \
-    php82-pecl-msgpack \
-    php82-pecl-redis \
-    php82-pecl-yaml \
-    php82-session \
-    php82-sockets \
-    php82-soap \
+    php83-bz2 \
+    php83-gd \
+    php83-intl \
+    php83-mysqli \
+    php83-opcache \
+    php83-pcntl \
+    php83-pdo_mysql \
+    php83-pecl-igbinary \
+    php83-pecl-imagick \
+    php83-pecl-msgpack \
+    php83-pecl-redis \
+    php83-pecl-yaml \
+    php83-session \
+    php83-sockets \
+    php83-soap \
     rsync \
     shadow \
     sqlite \
@@ -37,12 +37,12 @@ RUN apk add --no-cache \
       zip \
     && docker-php-ext-install zip
 
-RUN cp -pr /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php82/modules
+RUN cp -pr /usr/local/lib/php/extensions/no-debug-non-zts*/* /usr/lib/php83/modules
 
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
 RUN touch /usr/local/etc/php/conf.d/docker-modules.ini \
-    && echo $'extension_dir=/usr/lib/php82/modules \n\
+    && echo $'extension_dir=/usr/lib/php83/modules \n\
 extension=bz2 \n\
 extension=gd \n\
 extension=igbinary \n\
