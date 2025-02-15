@@ -1,4 +1,4 @@
-FROM php:8.0-fpm-alpine
+FROM php:8.1-fpm-alpine
 
 RUN apk --update --no-progress add \
     autoconf \
@@ -26,6 +26,7 @@ RUN apk --update --no-progress add \
     parallel \
     pcre-dev \
     rsync \
+    mini-sendmail \
     shadow \
     sqlite \
     unzip \

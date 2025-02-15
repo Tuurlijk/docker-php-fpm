@@ -26,6 +26,7 @@ RUN apk --update --no-progress add \
     php82-sockets \
     php82-soap \
     rsync \
+    mini-sendmail \
     shadow \
     sqlite \
     unzip \

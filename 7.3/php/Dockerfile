@@ -20,6 +20,7 @@ RUN apt-get update \
         mariadb-client \
         parallel \
         rsync \
+        sendmail \
         sqlite3 \
         ssh \
         unzip \
